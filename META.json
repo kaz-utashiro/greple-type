@@ -1,5 +1,5 @@
 {
-   "abstract" : "greple -Mtype module",
+   "abstract" : "file type filter module for greple",
    "author" : [
       "Kazumasa Utashiro"
    ],
@@ -42,7 +42,7 @@
       },
       "runtime" : {
          "requires" : {
-            "App::Greple" : "8.46",
+            "App::Greple" : "8.52",
             "perl" : "v5.14.0"
          }
       },

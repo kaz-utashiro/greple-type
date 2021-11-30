@@ -1,16 +1,16 @@
 [![Actions Status](https://github.com/kaz-utashiro/greple-type/workflows/test/badge.svg)](https://github.com/kaz-utashiro/greple-type/actions) [![MetaCPAN Release](https://badge.fury.io/pl/App-Greple-type.svg)](https://metacpan.org/release/App-Greple-type)
 # NAME
 
-App::Greple::type - greple -Mtype module
+App::Greple::type - file type filter module for greple
 
 # SYNOPSIS
 
-    greple -Mtype --type-xxx ... --dig .
+    greple -Mdig -Mtype --type-xxx ... --dig .
 
 # DESCRIPTION
 
 This module filters search target files by given rule.  For example,
-option for Perl is defined like this:
+option for Perl is defined as this:
 
     option --type-perl \
            --suffix=pl,PL,pm,pod,t,psgi \
@@ -19,6 +19,9 @@ option for Perl is defined like this:
 Using this option, only files those name end with **--suffix** option
 or files which contains string `perl` in the first `#!` (shebang)
 line will be searched.
+
+Option **--suffix** and **--shebang** are defined in
+[App::Greple::select](https://metacpan.org/pod/App::Greple::select) module.
 
 # OPTIONS
 
@@ -89,7 +92,7 @@ line will be searched.
     option --type-scala         --suffix=scala
     option --type-scheme        --suffix=scm,ss
     option --type-shell         --suffix=sh,bash,csh,tcsh,ksh,zsh,fish \
-                                --select-data=\A#!.*\b(sh|bash|csh|tcsh|ksh|zsh|fish)\b
+                                --select-data='\A#!.*\b(sh|bash|csh|tcsh|ksh|zsh|fish)\b'
     option --type-smalltalk     --suffix=st
     option --type-sql           --suffix=sql,ctl
     option --type-tcl           --suffix=tcl,itcl,itk
@@ -98,7 +101,7 @@ line will be searched.
     option --type-vb            --suffix=bas,cls,frm,ctl,vb,resx
     option --type-verilog       --suffix=v,vh,sv
     option --type-vim           --suffix=vim
-    option --type-xml           --suffix=xml,dtd,xsl,xslt,ent --select-data=\A.*<[?]xml
+    option --type-xml           --suffix=xml,dtd,xsl,xslt,ent --select-data='\A.*<[?]xml'
     option --type-yaml          --suffix=yaml,yml
 
 # BACKGROUND

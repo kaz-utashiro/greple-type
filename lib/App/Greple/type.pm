@@ -2,16 +2,16 @@
 
 =head1 NAME
 
-App::Greple::type - greple -Mtype module
+App::Greple::type - file type filter module for greple
 
 =head1 SYNOPSIS
 
-    greple -Mtype --type-xxx ... --dig .
+    greple -Mdig -Mtype --type-xxx ... --dig .
 
 =head1 DESCRIPTION
 
 This module filters search target files by given rule.  For example,
-option for Perl is defined like this:
+option for Perl is defined as this:
 
     option --type-perl \
            --suffix=pl,PL,pm,pod,t,psgi \
@@ -20,6 +20,9 @@ option for Perl is defined like this:
 Using this option, only files those name end with B<--suffix> option
 or files which contains string C<perl> in the first C<#!> (shebang)
 line will be searched.
+
+Option B<--suffix> and B<--shebang> are defined in
+L<App::Greple::select> module.
 
 =head1 OPTIONS
 
@@ -98,7 +101,7 @@ used as B<--xxx> as well.
   option --type-scala         --suffix=scala
   option --type-scheme        --suffix=scm,ss
   option --type-shell         --suffix=sh,bash,csh,tcsh,ksh,zsh,fish \
-                              --select-data=\A#!.*\b(sh|bash|csh|tcsh|ksh|zsh|fish)\b
+                              --select-data='\A#!.*\b(sh|bash|csh|tcsh|ksh|zsh|fish)\b'
   option --type-smalltalk     --suffix=st
   option --type-sql           --suffix=sql,ctl
   option --type-tcl           --suffix=tcl,itcl,itk
@@ -107,7 +110,7 @@ used as B<--xxx> as well.
   option --type-vb            --suffix=bas,cls,frm,ctl,vb,resx
   option --type-verilog       --suffix=v,vh,sv
   option --type-vim           --suffix=vim
-  option --type-xml           --suffix=xml,dtd,xsl,xslt,ent --select-data=\A.*<[?]xml
+  option --type-xml           --suffix=xml,dtd,xsl,xslt,ent --select-data='\A.*<[?]xml'
   option --type-yaml          --suffix=yaml,yml
 
 =head1 BACKGROUND
@@ -149,14 +152,14 @@ use Data::Dumper;
 my($module, $argv);
 my %opt;
 
+sub initialize {
+    ($module, $argv) = @_;
+}
+
 sub opt {
     while (my($k, $v) = splice @_, 0, 2) {
 	$opt{$k} = $v;
     }
-}
-
-sub initialize {
-    ($module, $argv) = @_;
 }
 
 sub finalize {
@@ -237,7 +240,7 @@ option --type-sass          --suffix=sass,scss
 option --type-scala         --suffix=scala
 option --type-scheme        --suffix=scm,ss
 option --type-shell         --suffix=sh,bash,csh,tcsh,ksh,zsh,fish \
-                            --select-data=\A#!.*\b(sh|bash|csh|tcsh|ksh|zsh|fish)\b
+                            --select-data='\A#!.*\b(sh|bash|csh|tcsh|ksh|zsh|fish)\b'
 option --type-smalltalk     --suffix=st
 option --type-sql           --suffix=sql,ctl
 option --type-tcl           --suffix=tcl,itcl,itk
@@ -246,5 +249,5 @@ option --type-tt            --suffix=tt,tt2,ttml
 option --type-vb            --suffix=bas,cls,frm,ctl,vb,resx
 option --type-verilog       --suffix=v,vh,sv
 option --type-vim           --suffix=vim
-option --type-xml           --suffix=xml,dtd,xsl,xslt,ent --select-data=\A.*<[?]xml
+option --type-xml           --suffix=xml,dtd,xsl,xslt,ent --select-data='\A.*<[?]xml'
 option --type-yaml          --suffix=yaml,yml
