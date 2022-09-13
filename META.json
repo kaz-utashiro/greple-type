@@ -4,7 +4,7 @@
       "Kazumasa Utashiro"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.1.12, CPAN::Meta::Converter version 2.150010",
+   "generated_by" : "Minilla/v3.1.19, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "perl_5"
    ],
@@ -42,7 +42,7 @@
       },
       "runtime" : {
          "requires" : {
-            "App::Greple" : "8.52",
+            "App::Greple" : "8.58",
             "perl" : "v5.14.0"
          }
       },
@@ -60,7 +60,7 @@
       "homepage" : "https://github.com/kaz-utashiro/greple-type",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/kaz-utashiro/greple-type.git",
+         "url" : "https://github.com/kaz-utashiro/greple-type.git",
          "web" : "https://github.com/kaz-utashiro/greple-type"
       }
    },
@@ -69,6 +69,6 @@
    "x_contributors" : [
       "Kazumasa Utashiro <kaz@utashiro.com>"
    ],
-   "x_serialization_backend" : "JSON::PP version 4.04",
+   "x_serialization_backend" : "JSON::PP version 4.07",
    "x_static_install" : 1
 }

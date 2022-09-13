@@ -21,7 +21,7 @@ or files which contains string `perl` in the first `#!` (shebang)
 line will be searched.
 
 Option **--suffix** and **--shebang** are defined in
-[App::Greple::select](https://metacpan.org/pod/App::Greple::select) module.
+[App::Greple::select](https://metacpan.org/pod/App%3A%3AGreple%3A%3Aselect) module.
 
 # OPTIONS
 
@@ -106,7 +106,7 @@ Option **--suffix** and **--shebang** are defined in
 
 # BACKGROUND
 
-This module is inspired by [App::Gre](https://metacpan.org/pod/App::Gre) command, and original matching
+This module is inspired by [App::Gre](https://metacpan.org/pod/App%3A%3AGre) command, and original matching
 rule is taken from it.
 
 Filename matching can be done with **-Mfind** module, but to know file
@@ -116,9 +116,9 @@ introduced new **-Mselect** module.
 
 # SEE ALSO
 
-[App::Greple](https://metacpan.org/pod/App::Greple), [App::Greple::select](https://metacpan.org/pod/App::Greple::select)
+[App::Greple](https://metacpan.org/pod/App%3A%3AGreple), [App::Greple::select](https://metacpan.org/pod/App%3A%3AGreple%3A%3Aselect)
 
-[App::Gre](https://metacpan.org/pod/App::Gre)
+[App::Gre](https://metacpan.org/pod/App%3A%3AGre)
 
 # AUTHOR
 
