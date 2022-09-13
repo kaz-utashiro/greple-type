@@ -6,12 +6,15 @@ App::Greple::type - file type filter module for greple
 
 =head1 SYNOPSIS
 
-    greple -Mdig -Mtype --type-xxx ... --dig .
+    greple -Mdig -Mtype --type-xxxx ... --dig .
 
 =head1 DESCRIPTION
 
-This module filters search target files by given rule.  For example,
-option for Perl is defined as this:
+This module filters search target files by given rule.  It is
+convenient to use with other B<greple> module which support recursive
+or multi-file search such as B<-Mfind>, B<-Mdig> or B<-Mgit>.
+
+For example, option for Perl is defined as this:
 
     option --type-perl \
            --suffix=pl,PL,pm,pod,t,psgi \
@@ -24,28 +27,29 @@ line will be searched.
 Option B<--suffix> and B<--shebang> are defined in
 L<App::Greple::select> module.
 
-=head1 OPTIONS
+=head1 CONFIGURATION
 
 =over 7
 
-=item B<-Mtype::opt>(I<key>[=I<value>])
+=item B<-Mtype::config>(I<key>[=I<value>])
 
-B<-Mtype> module can be called with B<opt> function to control module
-behavior.
+B<-Mtype> module can be called with B<config> function to control
+module behavior.
 
 =over 4
 
 =item B<short>
 
-Calling as B<-Mtype::opt(short)> or B<-Mtype::opt=short> introduce
-short name for rule options.  Then all B<--type-xxx> option can be
-used as B<--xxx> as well.
+Calling as B<-Mtype::config(short)> or B<-Mtype::config=short>
+introduce short name for rule options.  When short name mode is
+activated, all B<--type-xxxx> options can be used as B<--xxxx> as
+well.
 
 =back
 
 =back
 
-=head1 RULES
+=head1 OPTIONS
 
   option --type-actionscript  --suffix=as,mxml
   option --type-ada           --suffix=ada,adb,ads
@@ -156,7 +160,7 @@ sub initialize {
     ($module, $argv) = @_;
 }
 
-sub opt {
+sub config {
     while (my($k, $v) = splice @_, 0, 2) {
 	$opt{$k} = $v;
     }
@@ -166,7 +170,7 @@ sub finalize {
     if ($opt{short}) {
 	my @options = $module->options;
 	for my $opt (@options) {
-	    $opt =~ /^--type-(.*)/ or next;
+	    $opt =~ /^--type-(.+)/ or next;
 	    $module->setopt("--$1", $opt);
 	}
     }
@@ -246,3 +250,5 @@ option --type-verilog       --suffix=v,vh,sv
 option --type-vim           --suffix=vim
 option --type-xml           --suffix=xml,dtd,xsl,xslt,ent --select-data='\A.*<[?]xml'
 option --type-yaml          --suffix=yaml,yml
+
+#  LocalWords:  perl shebang config

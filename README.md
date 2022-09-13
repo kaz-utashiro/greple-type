@@ -5,12 +5,15 @@ App::Greple::type - file type filter module for greple
 
 # SYNOPSIS
 
-    greple -Mdig -Mtype --type-xxx ... --dig .
+    greple -Mdig -Mtype --type-xxxx ... --dig .
 
 # DESCRIPTION
 
-This module filters search target files by given rule.  For example,
-option for Perl is defined as this:
+This module filters search target files by given rule.  It is
+convenient to use with other **greple** module which support recursive
+or multi-file search such as **-Mfind**, **-Mdig** or **-Mgit**.
+
+For example, option for Perl is defined as this:
 
     option --type-perl \
            --suffix=pl,PL,pm,pod,t,psgi \
@@ -23,20 +26,21 @@ line will be searched.
 Option **--suffix** and **--shebang** are defined in
 [App::Greple::select](https://metacpan.org/pod/App%3A%3AGreple%3A%3Aselect) module.
 
-# OPTIONS
+# CONFIGURATION
 
-- **-Mtype::opt**(_key_\[=_value_\])
+- **-Mtype::config**(_key_\[=_value_\])
 
-    **-Mtype** module can be called with **opt** function to control module
-    behavior.
+    **-Mtype** module can be called with **config** function to control
+    module behavior.
 
     - **short**
 
-        Calling as **-Mtype::opt(short)** or **-Mtype::opt=short** introduce
-        short name for rule options.  Then all **--type-xxx** option can be
-        used as **--xxx** as well.
+        Calling as **-Mtype::config(short)** or **-Mtype::config=short**
+        introduce short name for rule options.  When short name mode is
+        activated, all **--type-xxxx** options can be used as **--xxxx** as
+        well.
 
-# RULES
+# OPTIONS
 
     option --type-actionscript  --suffix=as,mxml
     option --type-ada           --suffix=ada,adb,ads
