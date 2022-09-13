@@ -135,7 +135,7 @@ Kazumasa Utashiro
 
 =head1 LICENSE
 
-Copyright 2021 Kazumasa Utashiro.
+Copyright 2021-2022 Kazumasa Utashiro.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
@@ -177,14 +177,9 @@ sub finalize {
 
 __DATA__
 
-define FILECOLOR 555/111E
-
 autoload -Mdig --dig
 
-option default \
-	-Mselect \
-	--filestyle=once \
-	--cm FILE=FILECOLOR
+option default -Mselect
 
 option --type-actionscript  --suffix=as,mxml
 option --type-ada           --suffix=ada,adb,ads
