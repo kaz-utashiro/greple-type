@@ -92,7 +92,7 @@ Option **--suffix** and **--shebang** are defined in
     option --type-scala         --suffix=scala
     option --type-scheme        --suffix=scm,ss
     option --type-shell         --suffix=sh,bash,csh,tcsh,ksh,zsh,fish \
-                                --select-data='\A#!.*\b(sh|bash|csh|tcsh|ksh|zsh|fish)\b'
+                                --shebang=sh,bash,csh,tcsh,ksh,zsh,fish
     option --type-smalltalk     --suffix=st
     option --type-sql           --suffix=sql,ctl
     option --type-tcl           --suffix=tcl,itcl,itk
