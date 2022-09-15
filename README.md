@@ -26,19 +26,12 @@ line will be searched.
 Option **--suffix** and **--shebang** are defined in
 [App::Greple::select](https://metacpan.org/pod/App%3A%3AGreple%3A%3Aselect) module.
 
-# CONFIGURATION
+# SHORT NAME
 
-- **-Mtype::config**(_key_\[=_value_\])
-
-    **-Mtype** module can be called with **config** function to control
-    module behavior.
-
-    - **short**
-
-        Calling as **-Mtype::config(short)** or **-Mtype::config=short**
-        introduce short name for rule options.  When short name mode is
-        activated, all **--type-xxxx** options can be used as **--xxxx** as
-        well.
+Calling module as **-Mtype::config(short)** or **-Mtype::config=short**
+introduce short name for rule options.  When short name mode is
+activated, all **--type-xxxx** options can be used as **--xxxx** as
+well.
 
 # OPTIONS
 

@@ -27,27 +27,12 @@ line will be searched.
 Option B<--suffix> and B<--shebang> are defined in
 L<App::Greple::select> module.
 
-=head1 CONFIGURATION
+=head1 SHORT NAME
 
-=over 7
-
-=item B<-Mtype::config>(I<key>[=I<value>])
-
-B<-Mtype> module can be called with B<config> function to control
-module behavior.
-
-=over 4
-
-=item B<short>
-
-Calling as B<-Mtype::config(short)> or B<-Mtype::config=short>
+Calling module as B<-Mtype::config(short)> or B<-Mtype::config=short>
 introduce short name for rule options.  When short name mode is
 activated, all B<--type-xxxx> options can be used as B<--xxxx> as
 well.
-
-=back
-
-=back
 
 =head1 OPTIONS
 
