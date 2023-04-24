@@ -8,6 +8,10 @@ App::Greple::type - file type filter module for greple
 
     greple -Mdig -Mtype --type-xxxx ... --dig .
 
+=head1 VERSION
+
+Version 1.01
+
 =head1 DESCRIPTION
 
 This module filters search target files by given rule.  It is
@@ -124,7 +128,7 @@ Kazumasa Utashiro
 
 =head1 LICENSE
 
-Copyright 2021-2022 Kazumasa Utashiro.
+Copyright 2021-2023 Kazumasa Utashiro.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
@@ -132,7 +136,7 @@ it under the same terms as Perl itself.
 =cut
 
 package App::Greple::type;
-our $VERSION = "0.01";
+our $VERSION = "1.01";
 
 use v5.14;
 use warnings;
