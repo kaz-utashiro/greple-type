@@ -9,7 +9,7 @@ App::Greple::type - file type filter module for greple
 
 # VERSION
 
-Version 1.02
+Version 1.0301
 
 # DESCRIPTION
 

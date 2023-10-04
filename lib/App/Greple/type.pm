@@ -10,7 +10,7 @@ App::Greple::type - file type filter module for greple
 
 =head1 VERSION
 
-Version 1.02
+Version 1.0301
 
 =head1 DESCRIPTION
 
@@ -150,7 +150,7 @@ it under the same terms as Perl itself.
 =cut
 
 package App::Greple::type;
-our $VERSION = "1.02";
+our $VERSION = "1.0301";
 
 use v5.14;
 use warnings;
@@ -179,10 +179,11 @@ sub finalize {
 	for my $from (@options) {
 	    my @to = $module->getopt($from) or next;
 	    $from =~ s/^--type/--no-type/ or next;
-	    for (@to) {
-		s/^--(?=suffix|select|shebang)/--x-/g;
-	    }
-	    $module->setopt($from, \@to);
+	    grep {
+		s/^--(?=suffix|select|shebang)/--x-/g || s/^--(?=type-)/--no-/
+	    } @to and do {
+		$module->setopt($from, \@to);
+	    };
 	}
     }
     #
