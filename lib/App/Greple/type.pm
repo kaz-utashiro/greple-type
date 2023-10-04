@@ -10,7 +10,7 @@ App::Greple::type - file type filter module for greple
 
 =head1 VERSION
 
-Version 1.01
+Version 1.02
 
 =head1 DESCRIPTION
 
@@ -150,7 +150,7 @@ it under the same terms as Perl itself.
 =cut
 
 package App::Greple::type;
-our $VERSION = "1.01";
+our $VERSION = "1.02";
 
 use v5.14;
 use warnings;
