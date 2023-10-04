@@ -16,7 +16,7 @@ Version 1.01
 
 This module filters search target files by given rule.  It is
 convenient to use with other B<greple> module which support recursive
-or multi-file search such as B<-Mfind>, B<-Mdig> or B<-Mgit>.
+or multi-file search such as C<-Mfind>, C<-Mdig> or C<-Mgit>.
 
 For example, option for Perl is defined as this:
 
@@ -24,19 +24,33 @@ For example, option for Perl is defined as this:
            --suffix=pl,PL,pm,pod,t,psgi \
            --shebang=perl
 
-Using this option, only files those name end with B<--suffix> option
+Using this option, only files those name end with C<--suffix> option
 or files which contains string C<perl> in the first C<#!> (shebang)
 line will be searched.
 
 Option B<--suffix> and B<--shebang> are defined in
 L<App::Greple::select> module.
 
-=head1 SHORT NAME
+=head2 NEGATIVE OPTIONS
 
-Calling module as B<-Mtype::config(short)> or B<-Mtype::config=short>
-introduce short name for rule options.  When short name mode is
-activated, all B<--type-xxxx> options can be used as B<--xxxx> as
-well.
+Negative options are automatically generated from positive options
+with C<--no-> prefix.  For example, C<--no-type-perl> option is
+defined as this:
+
+    option --no-type-perl \
+           --x-suffix=pl,PL,pm,pod,t,psgi \
+           --x-shebang=perl
+
+=head2 SHORT NAMES
+
+Short name mode is activated by default on this version.  When
+activated, all C<--type-xxxx> and C<--no-type-xxxx> options can be
+used as C<--xxxx> and C<--no-xxxx> as well.
+
+As for Perl, C<--perl> and C<--no-perl> can be used.
+
+If you want to disable this mode, call module with config function
+call, like C<-Mtype::config(short=0)> or C<-Mtype::config=short=0>.
 
 =head1 OPTIONS
 
@@ -143,7 +157,7 @@ use warnings;
 use Data::Dumper;
 
 my($module, $argv);
-my %opt;
+my %opt = (short => 1, negative => 1);
 
 sub initialize {
     ($module, $argv) = @_;
@@ -156,11 +170,30 @@ sub config {
 }
 
 sub finalize {
+    my @options = $module->options;
+    #
+    # set negative --no-type-xxx options
+    #
+    if ($opt{negative}) {
+	my @options = $module->options;
+	for my $from (@options) {
+	    my @to = $module->getopt($from) or next;
+	    $from =~ s/^--type/--no-type/ or next;
+	    for (@to) {
+		s/^--(?=suffix|select|shebang)/--x-/g;
+	    }
+	    $module->setopt($from, \@to);
+	}
+    }
+    #
+    # set --xxx    for --type-xxx option
+    # set --no-xxx for --no-type-xxx option
+    #
     if ($opt{short}) {
 	my @options = $module->options;
 	for my $opt (@options) {
-	    $opt =~ /^--type-(.+)/ or next;
-	    $module->setopt("--$1", $opt);
+	    $opt =~ /^--(?<no>(no-)?)type-(?<name>.+)/ or next;
+	    $module->setopt("--$+{no}$+{name}", $opt);
 	}
     }
     warn Dumper $module if $opt{dump};
@@ -170,7 +203,7 @@ sub finalize {
 
 __DATA__
 
-autoload -Mdig --dig
+autoload -Mdig --dig --git
 
 option default -Mselect
 
