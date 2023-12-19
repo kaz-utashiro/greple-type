@@ -170,7 +170,7 @@ sub config {
 }
 
 sub finalize {
-    my @options = $module->options;
+    return if state $once_called++;
     #
     # set negative --no-type-xxx options
     #
@@ -194,7 +194,8 @@ sub finalize {
 	my @options = $module->options;
 	for my $opt (@options) {
 	    $opt =~ /^--(?<no>(no-)?)type-(?<name>.+)/ or next;
-	    $module->setopt("--$+{no}$+{name}", $opt);
+	    my $name = "--$+{no}$+{name}";
+	    $module->setopt($name, $opt);
 	}
     }
     warn Dumper $module if $opt{dump};
